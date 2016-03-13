@@ -1,0 +1,42 @@
+{% extends 'DTool/base.html' %}
+{% load widget_tweaks %}
+
+{% block add_auto %}
+
+<div class="row">
+    <div class="col-sm-12"><h2>Добавить напоминание</h2></div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <form role="form" action="/add_notification/{{ car_identifier }}" method="post">
+          {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">Заголовок</label>
+                {% render_field form.header class="form-control" id="exampleInputEmail1" placeholder="Введите заголовок"%}
+                {% if form.header.errors %}
+                    <div class="errors">{{ form.header.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Описание дела</label>
+                {% render_field form.business class="form-control" id="exampleInputEmail1" placeholder="Введите описание"%}
+                {% if form.business.errors %}
+                    <div class="errors">{{ form.business.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Дата выполнения</label>
+                {% render_field form.time class="form-control" id="exampleInputEmail1" placeholder="Введите дату уведомления (пример: 2016-01-01)"%}
+                {% if form.time.errors %}
+                    <div class="errors">{{ form.time.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-default">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

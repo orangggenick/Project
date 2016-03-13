@@ -1,0 +1,62 @@
+{% extends 'DTool/base.html' %}
+{% load staticfiles %}
+{% block my_autos %}
+
+<div class="row padding">
+    <div class="col-md-12">
+        <h2>Объявления</h2>
+
+
+        {% if autos.count == 0 %}
+        <div class="jumbotron">
+            <h2>Тут пока ничего нет</h2>
+            <hr>
+            <h4>Для добавления объявления войдите и выберите "Продать" у автомобииля</h4>
+        </div>
+        {% else %}
+
+        {% for auto in autos %}
+            <div class="container-fluid">
+            <div class="row" id="auto_row">
+                <div class="col-md-6" id="auto_img">
+                    {% if auto.image %}
+                        <img src="{{ auto.image.url }}" class="img-responsive" id="img-rounded">
+                    {% else %}
+                        <img src="{% static "no-image.jpg" %}" class="img-responsive" id="img-rounded" style="width:100%">
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <h3>{{ auto.brand}} {{auto.model}}</h3>
+                    <h4>{{ auto.body }} {{ auto.year }} г.</h4>
+                    <div class="row-fluid">
+                        <div class="col-md-6" id="no-padding">
+                            <h5><b>Тип трансмиссии:</b> {{ auto.transmission }}</h5>
+                            <h5><b>Тип привода:</b> {{ auto.gearing }}</h5>
+                            <h5><b>Тип топлива:</b> {{ auto.fuel }}</h5>
+                            <h5><b>Мощность:</b> {{ auto.horsepower }} л.с.</h5>
+                            <br>
+                            {% if user.is_authenticated %}
+                                <button type="button" class="btn btn-default">Купить</button>
+                            {% else %}
+                                <a href="/login"><button type="button" class="btn btn-default">Купить</button></a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6" id="no-padding">
+                            <h5><b>Объем двигателя:</b> {{ auto.engine }} л.</h5>
+                            <h5><b>Пробег:</b> {{ auto.mileage }} км</h5>
+                            <h5><b>Цвет:</b> {{ auto.color }}</h5>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+
+            <hr>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

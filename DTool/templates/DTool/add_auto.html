@@ -1,0 +1,123 @@
+{% extends 'DTool/base.html' %}
+{% load widget_tweaks %}
+
+{% block add_auto %}
+
+<div class="row">
+    <div class="col-sm-12"><h1>Добавить автомобиль</h1></div>
+</div>
+
+<div class="row">
+
+        <form role="form" action="/add_auto" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+            <div class="col-md-5">
+                <div class="form-group">
+                 <label for="exampleInputEmail1">VIN - код</label>
+                 {% render_field form.vin class="form-control" id="exampleInputEmail1" placeholder="Введите VIN"%}
+                 {% if form.vin.errors %}
+                        <div class="errors">{{ form.vin.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Номер</label>
+                    {% render_field form.number  class="form-control" id="exampleInputEmail1" placeholder="Введите номер"%}
+                    {% if form.number.errors %}
+                        <div class="errors">{{ form.number.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Марка</label>
+                    {% render_field form.brand class="form-control" id="exampleInputEmail1" placeholder="Введите марку"%}
+                    {% if form.brand.errors %}
+                        <div class="errors">{{ form.brand.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Модель</label>
+                    {% render_field form.model  class="form-control" id="exampleInputEmail1" placeholder="Введите модель"%}
+                    {% if form.model.errors %}
+                        <div class="errors">{{ form.model.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Год выпуска</label>
+                    {% render_field form.year class="form-control" id="exampleInputEmail1" placeholder="Введите год выпуска"%}
+                    {% if form.year.errors %}
+                        <div class="errors">{{ form.year.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Объем двигателя</label>
+                    {% render_field form.engine  class="form-control" id="exampleInputEmail1" placeholder="Введите объем двигателя"%}
+                    {% if form.engine.errors %}
+                        <div class="errors">{{ form.engine.errors }}</div>
+                    {% endif %}
+                </div>
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Мощность двигателя (л. с.)</label>
+                    {% render_field form.horsepower  class="form-control" id="exampleInputEmail1"%}
+                    {% if form.horsepower.errors %}
+                        <div class="errors">{{ form.horsepower.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-offset-1 col-md-5">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Тип трансмиссии</label>
+                    {% render_field form.transmission class="form-control" id="exampleInputEmail1" placeholder="Введите тип трансмиссии"%}
+                    {% if form.transmission.errors %}
+                         <div class="errors">{{ form.transmission.errors }}</div>
+                     {% endif %}
+                </div>
+                <div class="form-group">
+                     <label for="exampleInputEmail1">Тип привода</label>
+                     {% render_field form.gearing  class="form-control" id="exampleInputEmail1" placeholder="Введите тип привода"%}
+                     {% if form.gearing.errors %}
+                         <div class="errors">{{ form.gearing.errors }}</div>
+                     {% endif %}
+                 </div>
+                <div class="form-group">
+                     <label for="exampleInputEmail1">Тип топлива</label>
+                     {% render_field form.fuel class="form-control" id="exampleInputEmail1" placeholder="Введите тип топлива"%}
+                     {% if form.fuel.errors %}
+                         <div class="errors">{{ form.fuel.errors }}</div>
+                     {% endif %}
+                 </div>
+                <div class="form-group">
+                     <label for="exampleInputEmail1">Пробег</label>
+                     {% render_field form.mileage  class="form-control" id="exampleInputEmail1" placeholder="Введите показания одометра"%}
+                     {% if form.mileage.errors %}
+                         <div class="errors">{{ form.mileage.errors }}</div>
+                     {% endif %}
+                 </div>
+                <div class="form-group">
+                     <label for="exampleInputEmail1">Тип кузова</label>
+                     {% render_field form.body class="form-control" id="exampleInputEmail1" placeholder="Введите тип кузова"%}
+                     {% if form.body.errors %}
+                         <div class="errors">{{ form.body.errors }}</div>
+                     {% endif %}
+                 </div>
+                <div class="form-group">
+                     <label for="exampleInputEmail1">Цвет</label>
+                     {% render_field form.color  class="form-control" id="exampleInputEmail1" placeholder="Введите цвет"%}
+                     {% if form.color.errors %}
+                        <div class="errors">{{ form.color.errors }}</div>
+                    {% endif %}
+                 </div>
+                      <div class="form-group">
+                     <label for="exampleInputEmail1">Фото</label>
+                     {% render_field form.image  class="form-control" id="exampleInputEmail1" %}
+                 </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Добавить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}

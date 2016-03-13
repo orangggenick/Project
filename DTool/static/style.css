@@ -1,0 +1,49 @@
+#auto_row{
+    text-align: left;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    background-color: #eeeeee;
+    border-radius: 7px;
+}
+
+#auto_col{
+    padding-top: 0;
+}
+
+
+#auto_col_btn{
+    padding-top: 7%;
+}
+
+.top_row{
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+#auto_img{
+    padding: 0;
+}
+
+#error404{
+    padding-top: 10%;
+}
+
+.padding{
+    padding-bottom: 2%;
+}
+
+#img-rounded{
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+#no-padding{
+    padding: 0;
+}
+
+h7{
+    font-size: 6rem;
+}
+
+select {-webkit-appearance: none; box-shadow: none !important; }
+:-webkit-autofill { color: #fff !important; }

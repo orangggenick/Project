@@ -1,0 +1,45 @@
+{% extends 'DTool/base.html' %}
+
+{% block service %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Расходы</h2>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Дата</th>
+                        <th>Стоимость</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for cost in costs reversed %}
+
+                    <tr>
+                        <td>{{ cost.what }}</td>
+                        <td>{{ cost.when }}</td>
+                        <td>{{ cost.price }} руб.</td>
+                    </tr>
+
+                {% endfor %}
+                {% for service in services reversed %}
+
+                    <tr>
+                        <td>{{ service.what }}</td>
+                        <td>{{ service.when }}</td>
+                        <td>{{ service.price }} руб.</td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+      <a href="/add_cost/{{ car_identifier }}"><button type="button" class="btn btn-default">Добавить</button></a>
+
+{% endblock %}

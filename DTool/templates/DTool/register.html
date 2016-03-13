@@ -1,0 +1,37 @@
+{% extends 'DTool/base.html' %}
+{% load widget_tweaks %}
+
+{% block reg %}
+
+<div class="container" id="reg">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Регистрация</h1>
+            <p><h4>От начала использования сервиса Вас отделяет пара минут</h4></p>
+        </div>
+    </div>
+    <div class="row" id="reg">
+        <div class="col-md-5">
+            <form role="form" action="/register" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Логин</label>
+                    {% render_field form.username class="form-control" id="exampleInputEmail1" placeholder="Придумайте логин"%}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Пароль</label>
+                    {% render_field form.password1 class="form-control" id="exampleInputEmail1" placeholder="Придумайте пароль"%}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Подтверждение пароля</label>
+                    {% render_field form.password2 class="form-control" id="exampleInputEmail1" placeholder="Повторите пароль"%}
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Зарегистрироваться</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

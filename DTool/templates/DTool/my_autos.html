@@ -1,0 +1,77 @@
+{% extends 'DTool/base.html' %}
+{% load staticfiles %}
+{% block my_autos %}
+
+<div class="row padding">
+    <div class="col-md-12">
+        <h2>Мои автомобили</h2>
+
+
+        {% if autos.count == 0 %}
+        <div class="jumbotron">
+            <h2>Тут пока ничего нет</h2>
+            <hr>
+            <h4>Для добавления автомобиля нажмите кнопку "добавить", расположенную ниже</h4>
+        </div>
+        {% else %}
+
+        {% for auto in autos %}
+            <div class="container-fluid">
+            <div class="row" id="auto_row">
+                <div class="col-md-6" id="auto_img">
+                    {% if auto.image %}
+                        <img src="{{ auto.image.url }}" class="img-responsive" id="img-rounded">
+                    {% else %}
+                        <img src="{% static "no-image.jpg" %}" class="img-responsive" id="img-rounded" style="width:100%">
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <h3>{{ auto.brand}} {{auto.model}}</h3>
+                    <h4>{{ auto.body }} {{ auto.year }} г.</h4>
+                    <h5><b>Гос. номер:</b> {{ auto.number }}</h5>
+                    <h5><b>Вин код:</b> {{ auto.vin }}</h5>
+                    <h5><b>Тип трансмиссии:</b> {{ auto.transmission }}</h5>
+                    <h5><b>Тип привода:</b> {{ auto.gearing }}</h5>
+                    <h5><b>Тип топлива:</b> {{ auto.fuel }}</h5>
+                    <h5><b>Мощность:</b> {{ auto.horsepower }} л.с.</h5>
+
+                    <br>
+
+                    <a href="/service/{{ auto.id }}"><button type="button" class="btn btn-default">Сервис</button></a>
+                    <a href="/cost/{{ auto.id }}"><button type="button" class="btn btn-primary">Расходы</button></a>
+                    <a href="/notification/{{ auto.id }}"><button type="button" class="btn btn-success">Задачи &nbsp <span class="badge">{{ auto.notes }}</span></button></a>
+                    <a href="/mark/{{ auto.id }}"><button type="button" class="btn btn-info">Заметки</button></a>
+                    {% if auto.sell == False %}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Еще <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Изменить</a></li>
+                                <li><a href="/sell/{{ auto.id }}">Продать</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Удалить авто</a></li>
+                              </ul>
+                        </div>
+                    {% else %}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Еще <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Изменить</a></li>
+                                <li><a href="/unsell/{{ auto.id }}">Снять с продажи</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Удалить авто</a></li>
+                              </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            </div>
+
+            <hr>
+        {% endfor %}
+        {% endif %}
+
+    <a href="/add_auto"><button class="btn btn-default">Добавить</button></a>
+    </div>
+</div>
+
+{% endblock %}

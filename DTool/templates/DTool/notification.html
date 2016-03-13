@@ -1,0 +1,28 @@
+{% extends 'DTool/base.html' %}
+
+{% block service %}
+
+<div class="row top_row">
+    {% for notification in notifications reversed %}
+    <div class="col-md-6">
+    <div class="jumbotron">
+        <h3>{{ notification.header }}</h3>
+        <hr>
+        <h4>{{ notification.business }}</h4>
+        <br>
+        <h4>Дата: {{ notification.time }}</h4>
+        <br>
+        {% if notification.done == False %}
+        <a href="/do_notification/{{ car_identifier }}/{{ notification.id }}"><button type="button" class="btn btn-default">Завершить</button></a>
+        {% else %}
+        <h4>Завершено</h4>
+        {% endif %}
+    </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+      <a href="/add_notification/{{ car_identifier }}"><button type="button" class="btn btn-default">Добавить</button></a>
+
+{% endblock %}

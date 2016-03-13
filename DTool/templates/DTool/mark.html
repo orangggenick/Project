@@ -1,0 +1,20 @@
+{% extends 'DTool/base.html' %}
+
+{% block service %}
+
+<div class="row top_row">
+    {% for mark in marks reversed %}
+    <div class="col-md-8 col-md-offset-2">
+        <h4><p align="center">{{ mark.date }}</p></h4>
+        <h2><p align="center">{{ mark.header }}</p></h2>
+        <h5><p align="justify">{{ mark.description }}</p></h5>
+        <hr>
+    </div>
+    <div class="col-md-2"></div>
+    {% endfor %}
+</div>
+
+
+      <a href="/add_mark/{{ car_identifier }}"><button type="button" class="btn btn-default">Добавить</button></a>
+
+{% endblock %}
