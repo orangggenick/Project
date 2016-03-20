@@ -33,6 +33,7 @@
         <ul class="nav nav-pills pull-right">
           {% if user.is_authenticated %}
               <li><a href="/advertisements">Объявления</a></li>
+              <li><a href="/">Мои авто</a></li>
               <li><a href="/logout">Выйти ({{ user.username }})</a></li>
           {% else %}
               <li><a href="/advertisements">Объявления</a></li>

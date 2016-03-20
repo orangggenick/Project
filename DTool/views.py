@@ -71,7 +71,10 @@ def my_autos(request):
     return render(request, 'DTool/my_autos.html', {'username': auth.get_user(request).username, 'autos':Car.objects.filter(owner_id=auth.get_user(request).id)})
 
 def service(request, car_id):
-    return render(request, 'DTool/service.html', { 'services':Service.objects.filter(car_id=car_id), 'username': auth.get_user(request).username, 'car_identifier':car_id })
+    if Car.objects.get(id=car_id).owner_id == auth.get_user(request).id:
+        return render(request, 'DTool/service.html', { 'services':Service.objects.filter(car_id=car_id), 'username': auth.get_user(request).username, 'car_identifier':car_id })
+    else:
+        return render(request, 'DTool/404.html')
 
 def add_service(request, car_id):
     args = {'car_identifier':car_id}
@@ -90,7 +93,10 @@ def add_service(request, car_id):
     return render_to_response('DTool/add_service.html', args)
 
 def cost(request, car_id):
-    return render(request, 'DTool/cost.html', { 'costs':Cost.objects.filter(car_id=car_id), 'services':Service.objects.filter(car_id=car_id), 'username': auth.get_user(request).username, 'car_identifier':car_id})
+    if Car.objects.get(id=car_id).owner_id == auth.get_user(request).id:
+        return render(request, 'DTool/cost.html', {'costs':Cost.objects.filter(car_id=car_id),'services':Service.objects.filter(car_id=car_id), 'username': auth.get_user(request).username, 'car_identifier':car_id})
+    else:
+        return render(request, 'DTool/404.html')
 
 def add_cost(request, car_id):
     args = {'car_identifier':car_id}
@@ -148,7 +154,11 @@ def do_notification(request, car_id, note_id):
         return render(request, 'DTool/404.html')
 
 def mark(request,car_id):
-    return render(request, 'DTool/mark.html', {'marks':Mark.objects.filter(car_id=car_id), 'car_identifier':car_id, 'username': auth.get_user(request).username})
+    if Car.objects.get(id=car_id).owner_id == auth.get_user(request).id:
+        return render(request, 'DTool/mark.html', {'marks':Mark.objects.filter(car_id=car_id), 'car_identifier':car_id, 'username': auth.get_user(request).username})
+    else:
+        return render(request, 'DTool/404.html')
+
 
 def add_mark(request, car_id):
     args = {'car_identifier':car_id}

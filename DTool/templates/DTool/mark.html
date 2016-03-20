@@ -3,15 +3,23 @@
 {% block service %}
 
 <div class="row top_row">
-    {% for mark in marks reversed %}
-    <div class="col-md-8 col-md-offset-2">
-        <h4><p align="center">{{ mark.date }}</p></h4>
-        <h2><p align="center">{{ mark.header }}</p></h2>
-        <h5><p align="justify">{{ mark.description }}</p></h5>
-        <hr>
-    </div>
-    <div class="col-md-2"></div>
-    {% endfor %}
+    {% if marks.count == 0 %}
+            <div class="jumbotron">
+                <h2>У Вас пока нет заметок</h2>
+                <hr>
+                <h4>Для добавления заметки нажмите кнопку "добавить", расположенную ниже</h4>
+            </div>
+            {% else %}
+        {% for mark in marks reversed %}
+        <div class="col-md-8 col-md-offset-2">
+            <h4><p align="center">{{ mark.date }}</p></h4>
+            <h2><p align="center">{{ mark.header }}</p></h2>
+            <h5><p align="justify">{{ mark.description }}</p></h5>
+            <hr>
+        </div>
+        <div class="col-md-2"></div>
+        {% endfor %}
+    {% endif %}
 </div>
 
 
