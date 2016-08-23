@@ -57,6 +57,7 @@ class Car(models.Model):
     body = models.CharField(max_length=20,choices=BODY_SELECT, default='Не выбрано')
     color = models.CharField(max_length=30)
     image = models.ImageField(null=True, blank=True)
+    price = models.IntegerField()
     sell = models.BooleanField()
     notes = models.IntegerField()
     owner_id = models.IntegerField()
@@ -67,7 +68,12 @@ class Car(models.Model):
 class CarForm(ModelForm):
     class Meta:
         model = Car
-        exclude = ['notes','owner_id']
+        exclude = ['notes','owner_id','price']
+
+class CarForm2(ModelForm):
+    class Meta:
+        model = Car
+        exclude = ['notes','owner_id','vin','brand','model','number']
 
 class Service(models.Model):
     class Meta():

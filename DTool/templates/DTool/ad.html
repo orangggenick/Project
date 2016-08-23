@@ -35,16 +35,20 @@
                             <h5><b>Тип топлива:</b> {{ auto.fuel }}</h5>
                             <h5><b>Мощность:</b> {{ auto.horsepower }} л.с.</h5>
                             <br>
-                            {% if user.is_authenticated %}
-                                <button type="button" class="btn btn-default">Купить</button>
-                            {% else %}
-                                <a href="/login"><button type="button" class="btn btn-default">Купить</button></a>
-                            {% endif %}
+                            <h4>{{ auto.price }} руб.</h4>
+
                         </div>
                         <div class="col-md-6" id="no-padding">
                             <h5><b>Объем двигателя:</b> {{ auto.engine }} л.</h5>
                             <h5><b>Пробег:</b> {{ auto.mileage }} км</h5>
                             <h5><b>Цвет:</b> {{ auto.color }}</h5>
+                            <br>
+                            <br>
+                            {% if user.is_authenticated %}
+                                <button type="button" class="btn btn-default">Купить</button>
+                            {% else %}
+                                <a href="/login"><button type="button" class="btn btn-default">Купить</button></a>
+                            {% endif %}
                         </div>
                     </div>
 

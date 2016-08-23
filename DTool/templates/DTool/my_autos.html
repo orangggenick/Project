@@ -16,6 +16,26 @@
         {% else %}
 
         {% for auto in autos %}
+            <div id="{{ auto.id }}" class="modal fade">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Заголовок модального окна -->
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Удалить автомобиль</h4>
+                  </div>
+                  <!-- Основное содержимое модального окна -->
+                  <div class="modal-body">
+                    Удаляя автомобиль, Вы удаляете все данные об обслуживаниях, расходах, напоминаниях, а также заметках. Вы хотите продолжить?
+                  </div>
+                  <!-- Футер модального окна -->
+                  <div class="modal-footer">
+                    <a href="delete_car/{{ auto.id }}/"><button type="button" class="btn btn-danger">Удалить</button></a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="container-fluid">
             <div class="row" id="auto_row">
                 <div class="col-md-6" id="auto_img">
@@ -48,7 +68,7 @@
                                 <li><a href="#">Изменить</a></li>
                                 <li><a href="/sell/{{ auto.id }}">Продать</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Удалить авто</a></li>
+                                <li><a href="#{{ auto.id }}" data-toggle="modal">Удалить авто</a></li>
                               </ul>
                         </div>
                     {% else %}
@@ -58,7 +78,7 @@
                                 <li><a href="#">Изменить</a></li>
                                 <li><a href="/unsell/{{ auto.id }}">Снять с продажи</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Удалить авто</a></li>
+                                <li><a href="#{{ auto.id }}" data-toggle="modal">Удалить авто</a></li>
                               </ul>
                         </div>
                     {% endif %}
@@ -71,7 +91,9 @@
         {% endif %}
 
     <a href="/add_auto"><button class="btn btn-default">Добавить</button></a>
+
     </div>
 </div>
+
 
 {% endblock %}

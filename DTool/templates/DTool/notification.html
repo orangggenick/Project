@@ -2,7 +2,10 @@
 
 {% block service %}
 
-<div class="row top_row">
+<div class="row ">
+
+    <div class="col-sm-12 padding">
+        <h1>Напоминания</h1>
 
     {% if notifications.count == 0 %}
         <div class="jumbotron">
@@ -31,7 +34,7 @@
         {% endfor %}
     {% endif %}
 </div>
-
+</div>
 
       <a href="/add_notification/{{ car_identifier }}"><button type="button" class="btn btn-default">Добавить</button></a>
 

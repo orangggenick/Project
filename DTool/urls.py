@@ -3,6 +3,7 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 
 
+
 urlpatterns = [
     url(r'^$', 'DTool.views.home'),
     url(r'register', 'DTool.views.register'),
@@ -22,5 +23,8 @@ urlpatterns = [
     url(r'^sell/(?P<car_id>\d+)$', 'DTool.views.sell'),
     url(r'unsell/(?P<car_id>\d+)$', 'DTool.views.unsell'),
     url(r'^advertisements$', 'DTool.views.ad'),
+    url(r'^calculate$', 'DTool.views.calculate'),
+    url(r'^add_info/(?P<car_id>\d+)/$', 'DTool.views.add_info'),
+    url(r'^delete_car/(?P<car_id>\d+)/$', 'DTool.views.delete_car'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

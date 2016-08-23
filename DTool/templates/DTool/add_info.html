@@ -5,61 +5,57 @@
 
 <div class="row">
     <div class="col-sm-12 padding">
-        <h1>Добавить автомобиль</h1>
-        <h4><span class="glyphicon glyphicon-warning-sign"></span> VIN код, номер, марку и модель нельзя будет изменить впоследствии</h4>
+        <h1>Добавить информацию</h1>
+        <h4>Все поля должны быть заполнены</h4>
     </div>
 </div>
 
 <div class="row">
 
-        <form role="form" action="/add_auto" method="post" enctype="multipart/form-data">
+        <form role="form" action="/add_info/{{ this_auto.id }}/" method="post" enctype="multipart/form-data">
           {% csrf_token %}
             <div class="col-md-5">
                 <div class="form-group">
-                 <label for="exampleInputEmail1">VIN - код</label>
-                 {% render_field form.vin class="form-control" id="exampleInputEmail1" placeholder="Введите VIN"%}
-                 {% if form.vin.errors %}
-                        <div class="errors">{{ form.vin.errors }}</div>
-                    {% endif %}
+                    <fieldset disabled>
+                        <label for="exampleInputEmail1">VIN - код</label>
+                        <input class="form-control" id="exampleInputEmail1" value={{ this_auto.vin }}>
+                    </fieldset>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Номер</label>
-                    {% render_field form.number  class="form-control" id="exampleInputEmail1" placeholder="Введите номер"%}
-                    {% if form.number.errors %}
-                        <div class="errors">{{ form.number.errors }}</div>
-                    {% endif %}
+                    <fieldset disabled>
+                        <label for="exampleInputEmail1">Номер</label>
+                        <input class="form-control" id="exampleInputEmail1" value={{ this_auto.vin }}>
+                    </fieldset>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Марка</label>
-                    {% render_field form.brand class="form-control" id="exampleInputEmail1" placeholder="Введите марку"%}
-                    {% if form.brand.errors %}
-                        <div class="errors">{{ form.brand.errors }}</div>
-                    {% endif %}
+                    <fieldset disabled>
+                        <label for="exampleInputEmail1">Марка</label>
+                        <input class="form-control" id="exampleInputEmail1" value={{ this_auto.vin }}>
+                    </fieldset>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Модель</label>
-                    {% render_field form.model  class="form-control" id="exampleInputEmail1" placeholder="Введите модель" %}
-                    {% if form.model.errors %}
-                        <div class="errors">{{ form.model.errors }}</div>
-                    {% endif %}
+                    <fieldset disabled>
+                        <label for="exampleInputEmail1">Модель</label>
+                        <input class="form-control" id="exampleInputEmail1" value={{ this_auto.vin }}>
+                    </fieldset>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Год выпуска</label>
-                    {% render_field form.year class="form-control" id="exampleInputEmail1" placeholder="Введите год выпуска"%}
+                    {% render_field form.year class="form-control" id="exampleInputEmail1" placeholder="Введите год выпуска" value=this_auto.year %}
                     {% if form.year.errors %}
                         <div class="errors">{{ form.year.errors }}</div>
                     {% endif %}
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Объем двигателя</label>
-                    {% render_field form.engine  class="form-control" id="exampleInputEmail1" placeholder="Введите объем двигателя"%}
+                    {% render_field form.engine  class="form-control" id="exampleInputEmail1" placeholder="Введите объем двигателя" value=this_auto.engine %}
                     {% if form.engine.errors %}
                         <div class="errors">{{ form.engine.errors }}</div>
                     {% endif %}
                 </div>
                  <div class="form-group">
                     <label for="exampleInputEmail1">Мощность двигателя (л. с.)</label>
-                    {% render_field form.horsepower  class="form-control" id="exampleInputEmail1"%}
+                    {% render_field form.horsepower  class="form-control" id="exampleInputEmail1" placeholder="Введите мощность двигателя" value=this_auto.horsepower %}
                     {% if form.horsepower.errors %}
                         <div class="errors">{{ form.horsepower.errors }}</div>
                     {% endif %}
@@ -69,54 +65,57 @@
             <div class="col-md-offset-1 col-md-5">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Тип трансмиссии</label>
-                    {% render_field form.transmission class="form-control" id="exampleInputEmail1" placeholder="Введите тип трансмиссии"%}
+                    {% render_field form.transmission class="form-control" id="exampleInputEmail1" placeholder="Введите тип трансмиссии" value=this_auto.transmission %}
                     {% if form.transmission.errors %}
                          <div class="errors">{{ form.transmission.errors }}</div>
                      {% endif %}
                 </div>
                 <div class="form-group">
                      <label for="exampleInputEmail1">Тип привода</label>
-                     {% render_field form.gearing  class="form-control" id="exampleInputEmail1" placeholder="Введите тип привода"%}
+                     {% render_field form.gearing  class="form-control" id="exampleInputEmail1" placeholder="Введите тип привода" value=this_auto.gearing %}
                      {% if form.gearing.errors %}
                          <div class="errors">{{ form.gearing.errors }}</div>
                      {% endif %}
                  </div>
                 <div class="form-group">
                      <label for="exampleInputEmail1">Тип топлива</label>
-                     {% render_field form.fuel class="form-control" id="exampleInputEmail1" placeholder="Введите тип топлива"%}
+                     {% render_field form.fuel class="form-control" id="exampleInputEmail1" placeholder="Введите тип топлива" value=this_auto.fuel %}
                      {% if form.fuel.errors %}
                          <div class="errors">{{ form.fuel.errors }}</div>
                      {% endif %}
                  </div>
                 <div class="form-group">
                      <label for="exampleInputEmail1">Пробег</label>
-                     {% render_field form.mileage  class="form-control" id="exampleInputEmail1" placeholder="Введите показания одометра"%}
+                     {% render_field form.mileage  class="form-control" id="exampleInputEmail1" placeholder="Введите показания одометра" %}
                      {% if form.mileage.errors %}
                          <div class="errors">{{ form.mileage.errors }}</div>
                      {% endif %}
                  </div>
                 <div class="form-group">
                      <label for="exampleInputEmail1">Тип кузова</label>
-                     {% render_field form.body class="form-control" id="exampleInputEmail1" placeholder="Введите тип кузова"%}
+                     {% render_field form.body class="form-control" id="exampleInputEmail1" placeholder="Введите тип кузова" value=this_auto.body %}
                      {% if form.body.errors %}
                          <div class="errors">{{ form.body.errors }}</div>
                      {% endif %}
                  </div>
                 <div class="form-group">
                      <label for="exampleInputEmail1">Цвет</label>
-                     {% render_field form.color  class="form-control" id="exampleInputEmail1" placeholder="Введите цвет"%}
+                     {% render_field form.color  class="form-control" id="exampleInputEmail1" placeholder="Введите цвет" value=this_auto.color %}
                      {% if form.color.errors %}
                         <div class="errors">{{ form.color.errors }}</div>
-                    {% endif %}
+                     {% endif %}
                  </div>
                       <div class="form-group">
-                     <label for="exampleInputEmail1">Фото</label>
-                     {% render_field form.image  class="form-control" id="exampleInputEmail1" %}
+                     <label for="exampleInputEmail1">Цена (руб.)</label>
+                     {% render_field form.price  class="form-control" id="exampleInputEmail1" placeholder="Введите цену"%}
+                     {% if form.price.errors %}
+                        <div class="errors">{{ form.price.errors }}</div>
+                     {% endif %}
                  </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">Добавить</button>
+                    <button type="submit" class="btn btn-default">Сохранить и продать</button>
                 </div>
             </div>
         </form>

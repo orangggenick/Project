@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response, redirect
 from django.template.context_processors import csrf
 from DTool.models import CarForm, Car, Service, Cost, ServiceForm, CostForm, Notification, NotificationForm, Mark, \
-    MarkForm
+    MarkForm, CarForm2
 
 
 def home(request):
@@ -52,6 +52,7 @@ def register(request):
 
 def add_auto(request):
     args = {}
+    args['username'] = auth.get_user(request).username
     args.update(csrf(request))
     args['form'] = CarForm()
     if request.POST:
@@ -60,6 +61,7 @@ def add_auto(request):
             some = addform.save(commit=False)
             some.sell = False
             some.notes = 0
+            some.price = 0
             some.owner_id = auth.get_user(request).id
             some.save()
             return my_autos(request)
@@ -178,9 +180,13 @@ def add_mark(request, car_id):
 def sell(request, car_id):
     if Car.objects.get(id=car_id):
         this_car = Car.objects.get(id=car_id)
-        this_car.sell = True
-        this_car.save()
-        return my_autos(request)
+        if this_car.price != 0:
+            this_car = Car.objects.get(id=car_id)
+            this_car.sell = True
+            this_car.save()
+            return my_autos(request)
+        else:
+            return add_info(request,car_id)
     else:
         return render(request, 'DTool/404.html')
 
@@ -188,6 +194,7 @@ def unsell(request, car_id):
     if Car.objects.get(id=car_id):
         this_car = Car.objects.get(id=car_id)
         this_car.sell = False
+        this_car.price = 0
         this_car.save()
         return my_autos(request)
     else:
@@ -195,3 +202,41 @@ def unsell(request, car_id):
 
 def ad(request):
     return render(request, 'DTool/ad.html', {'autos':Car.objects.filter(sell=True)})
+
+def calculate(request):
+    return render(request, 'DTool/calculate.html')
+
+def add_info(request, car_id):
+    this_auto = Car.objects.get(id=car_id)
+    args = {}
+    args.update(csrf(request))
+    args['form'] = CarForm2()
+    args['this_auto'] = Car.objects.get(id=car_id)
+    if request.POST:
+        addform = CarForm2(request.POST, request.FILES)
+        if addform.is_valid():
+            some = addform.save(commit=False)
+            this_auto.year = some.year
+            this_auto.engine = some.engine
+            this_auto.horsepower = some.horsepower
+            this_auto.transmission = some.transmission
+            this_auto.gearing = some.gearing
+            this_auto.fuel = some.fuel
+            this_auto.mileage = some.mileage
+            this_auto.body = some.body
+            this_auto.color = some.color
+            this_auto.price = some.price
+            this_auto.sell = True
+            this_auto.save()
+            return ad(request)
+        else:
+            args['form'] = addform
+    return render_to_response('DTool/add_info.html', args)
+
+def delete_car(request, car_id):
+    Car.objects.get(id=car_id).delete()
+    Service.objects.filter(car_id=car_id).delete()
+    Cost.objects.filter(car_id=car_id).delete()
+    Notification.objects.filter(car_id=car_id).delete()
+    Mark.objects.filter(car_id=car_id).delete()
+    return my_autos(request)

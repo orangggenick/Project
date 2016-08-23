@@ -33,10 +33,12 @@
         <ul class="nav nav-pills pull-right">
           {% if user.is_authenticated %}
               <li><a href="/advertisements">Объявления</a></li>
+              <li><a href="/calculate">Калькулятор</a></li>
               <li><a href="/">Мои авто</a></li>
               <li><a href="/logout">Выйти ({{ user.username }})</a></li>
           {% else %}
               <li><a href="/advertisements">Объявления</a></li>
+              <li><a href="/calculate">Калькулятор</a></li>
               <li><a href="/login">Войти</a></li>
               <li><a href="/register">Регистрация</a></li>
           {% endif %}
@@ -50,9 +52,11 @@
   {% block add_auto %}{% endblock %}
   {% block my_autos %}{% endblock %}
   {% block service %}{% endblock %}
+  {% block calculate %}{% endblock %}
 
   <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
   </body>
 </html>

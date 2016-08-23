@@ -1,0 +1,15 @@
+{% extends 'DTool/base.html' %}
+{% load staticfiles %}
+
+{% block calculate %}
+
+    <div class="row">
+        <div class="col-sm-12 padding"><h2>Калькулятор</h2></div>
+    </div>
+    <div class="row" >
+        <div class="col-sm-12"><a href="https://www.avtodispetcher.ru/distance/" id="avtd-embed-link">avtodispetcher.ru</a><script src="https://www.avtodispetcher.ru/distance/export/frame.js"></script><script>avtodispetcher_distance_frame.setLanguage("ru");avtodispetcher_distance_frame.setWidth('100%');</script></div>
+        <script>avtodispetcher_distance_frame.setCss("{% static "style.css" %}");</script>
+    </div>
+
+
+{% endblock %}
